@@ -1,6 +1,6 @@
 import UIKit
-import Magesess
-
+import Messages
+import MessageUI
 class StickersViewController: MSStickerBrowserViewController {
     
     var stickers = [MSSticker]()
@@ -13,6 +13,9 @@ class StickersViewController: MSStickerBrowserViewController {
     
     func loadStickers() {
         createSticker(asset: "Xbox", localizedDescription: "Xbox Emoji")
+        createSticker(asset: "Playstation", localizedDescription: "Playstation Emoji")
+        createSticker(asset: "Xbox", localizedDescription: "Controller Emoji")
+        createSticker(asset: "Xbox", localizedDescription: "Forza Horizon 5Emoji")
     }
     
     func createSticker(asset: String, localizedDescription: String) {
@@ -38,6 +41,22 @@ class StickersViewController: MSStickerBrowserViewController {
     
     override func stickerBrowserView(_ stickerBrowserView: MSStickerBrowserView, stickerAt index: Int) -> MSSticker {
         return stickers[index]
+    }
+}
+
+extension StickersViewController {
+    // Animate the sticker browser view when stickers are loaded
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animateStickers()
+    }
+    
+    func animateStickers() {
+        // Simple fade-in animation for the sticker browser view
+        stickerBrowserView.alpha = 0
+        UIView.animate(withDuration: 0.8, delay: 0, options: [.curveEaseInOut], animations: {
+            self.stickerBrowserView.alpha = 1
+        }, completion: nil)
     }
 }
 
@@ -68,11 +87,10 @@ func createBananaImage() -> UIImage? {
         UIColor.yellow.setFill()
         path.fill()
         
-        // Add some details
         UIColor.brown.setStroke()
         path.lineWidth = 2
         path.stroke()
     }
     
-    return image
-}
+        return image
+    }
