@@ -1,6 +1,5 @@
 import UIKit
 import Messages
-import MessageUI
 class StickersViewController: MSStickerBrowserViewController {
     
     var stickers = [MSSticker]()
@@ -92,5 +91,6 @@ func createBananaImage() -> UIImage? {
         path.stroke()
     }
     
+        return image
         return image
     }
